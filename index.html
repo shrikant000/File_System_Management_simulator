@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File System Management Simulator</title>
+  <link rel="stylesheet"
+    href="C:\Users\Sahil\Downloads\File_System_Management_Simulator\file_system_management_simulator\static\style.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">▣</span>
+      <div>
+        <h1>File System Simulator</h1>
+        <p>Operating Systems Mini Project</p>
+      </div>
+    </div>
+    <span class="safe-label">● Virtual storage only</span>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="side-heading">WORKSPACE</div>
+      <button class="nav active" id="homeBtn">▦ &nbsp; All files</button>
+      <button class="nav" id="rootBtn">⌂ &nbsp; Root directory</button>
+      <div class="side-heading tree-heading">DIRECTORY TREE</div>
+      <div id="tree" class="tree"></div>
+      <div class="sidebar-note"><strong>OS concept</strong>
+        <p>A directory stores references to files and subdirectories. This project simulates basic file operations.</p>
+      </div>
+    </aside>
+    <section class="content">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">YOUR WORKSPACE</p>
+          <h2>File manager</h2>
+          <div id="breadcrumb" class="breadcrumb">/</div>
+        </div>
+        <button id="refreshBtn" class="button ghost">↻ Refresh</button>
+      </div>
+      <div class="stats">
+        <div class="stat-card"><span class="stat-icon purple">▤</span>
+          <div>
+            <p>Total files</p><strong id="fileCount">0</strong>
+          </div>
+        </div>
+        <div class="stat-card"><span class="stat-icon blue">▣</span>
+          <div>
+            <p>Folders</p><strong id="folderCount">0</strong>
+          </div>
+        </div>
+        <div class="stat-card"><span class="stat-icon green">◴</span>
+          <div>
+            <p>Storage used</p><strong id="storageUsed">0 B</strong>
+          </div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <label class="search"><span>⌕</span><input id="searchInput" placeholder="Search files and folders..."></label>
+        <div class="actions">
+          <button id="newFolderBtn" class="button secondary">＋ Folder</button>
+          <button id="newFileBtn" class="button primary">＋ New file</button>
+        </div>
+      </div>
+      <div id="searchInfo" class="search-info"></div>
+      <div class="file-panel">
+        <div class="panel-head">
+          <div>
+            <h3 id="listTitle">Current directory</h3>
+            <p id="itemSubtitle">Files and folders in this location</p>
+          </div><span id="itemCount" class="count-pill">0 items</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>TYPE</th>
+                <th>SIZE</th>
+                <th class="right">ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody id="fileRows"></tbody>
+          </table>
+        </div>
+        <div id="emptyState" class="empty hidden">
+          <div class="empty-icon">▱</div>
+          <h3>This folder is empty</h3>
+          <p>Create a folder or file to get started.</p>
+        </div>
+      </div>
+      <p class="footer-note">Built with Python · FastAPI · HTML · CSS · JavaScript</p>
+    </section>
+  </main>
+
+  <dialog id="itemDialog">
+    <form id="itemForm">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">FILE SYSTEM</p>
+          <h3 id="dialogTitle">Create item</h3>
+        </div><button type="button" class="x-button" id="closeDialog">×</button>
+      </div>
+      <label class="field-label" for="itemName">Name</label><input id="itemName" required maxlength="100"
+        placeholder="e.g. notes.txt">
+      <div id="contentFieldWrap"><label class="field-label" for="itemContent">File content</label><textarea
+          id="itemContent" rows="5" placeholder="Write your file content..."></textarea></div>
+      <p id="dialogHint" class="hint">This item is created inside the current folder.</p>
+      <div class="dialog-actions"><button type="button" class="button ghost" id="cancelDialog">Cancel</button><button
+          class="button primary" type="submit">Create</button></div>
+    </form>
+  </dialog>
+  <dialog id="editorDialog">
+    <form id="editorForm">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">TEXT EDITOR</p>
+          <h3 id="editorTitle">Edit file</h3>
+        </div><button type="button" class="x-button" id="closeEditor">×</button>
+      </div>
+      <textarea id="editorContent" rows="12"></textarea>
+      <div class="dialog-actions"><button type="button" class="button ghost" id="cancelEditor">Cancel</button><button
+          class="button primary" type="submit">Save changes</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="C:\Users\Sahil\Downloads\File_System_Management_Simulator\file_system_management_simulator\static\app.js"></script>
+</body>
+
+</html>
